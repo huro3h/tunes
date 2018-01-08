@@ -5,6 +5,7 @@ class Tune < ApplicationRecord
   require 'open-uri'
 
   def self.crawl
+    # p page = agent.get("https://groover-seo.amebaownd.com/posts/3484732")
     uri = URI.parse('https://api.amebaowndme.com/v2/public/blogPosts/3484732')
     json = Net::HTTP.get(uri)
     result = JSON.parse(json)
@@ -14,7 +15,7 @@ class Tune < ApplicationRecord
     self.to_list(list)
   end
 
-  private
+  # private
 
   def self.to_list(list)
     set_lists = list.split('<p>')
@@ -24,7 +25,16 @@ class Tune < ApplicationRecord
       set_list.gsub!(/(<br>|<\/p>|&nbsp;)/, '')
       set_list.gsub!(/\s{2,}/, ' ')
       set_list.strip!
+      # binding.pry
+      next if set_list.blank?
+
+      requested?(set_list)
       ary << set_list
     end
+    ary
+  end
+
+  def self.requested?(set_list)
+    puts "#{set_list}はリクエスト曲です！" if set_list =~ /\*$/
   end
 end
