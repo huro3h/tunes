@@ -51,6 +51,8 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 # --additionnal gems--
 group :development, :test do
   gem 'dotenv-rails'
+  gem 'pry-byebug'
+  gem 'pry-rails'
 
   gem 'capybara'
   gem 'factory_bot_rails'
