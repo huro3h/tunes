@@ -11,6 +11,12 @@ class Tune < ApplicationRecord
 
     # p result['body']['title']
     list = result['body']['contents'][1]['value']
+    self.to_list(list)
+  end
+
+  private
+
+  def self.to_list(list)
     set_lists = list.split('<p>')
     ary = []
 
@@ -20,6 +26,5 @@ class Tune < ApplicationRecord
       set_list.strip!
       ary << set_list
     end
-    p ary
   end
 end
