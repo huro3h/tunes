@@ -22,19 +22,24 @@ class Tune < ApplicationRecord
     ary = []
 
     set_lists.each do |set_list|
-      set_list.gsub!(/(<br>|<\/p>|&nbsp;)/, '')
-      set_list.gsub!(/\s{2,}/, ' ')
-      set_list.strip!
-      # binding.pry
-      next if set_list.blank?
+      self.list_format(set_list)
 
-      requested?(set_list)
+      next if set_list.blank?
+      self.requested?(set_list)
       ary << set_list
     end
     ary
   end
 
+  def self.list_format(set_list)
+    set_list.gsub!(/(<br>|<\/p>|&nbsp;)/, '')
+    set_list.gsub!(/\s{2,}/, ' ')
+    set_list.gsub!(/ \/ /, ' - ')
+    set_list.strip!
+    set_list
+  end
+
   def self.requested?(set_list)
-    puts "#{set_list}はリクエスト曲です！" if set_list =~ /\*$/
+    "#{set_list}はリクエスト曲です！" if set_list =~ /\*$/
   end
 end
