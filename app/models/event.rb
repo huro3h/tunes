@@ -4,9 +4,9 @@ class Event < ApplicationRecord
   require 'nokogiri'
   require 'open-uri'
 
-  has_many :tunes
+  has_many :tunes, dependent: :destroy
 
-  def self.t # search_set_list
+  def search_set_list
     url = 'https://groover-seo.amebaownd.com/rss.xml'
     xml = Nokogiri::XML(open(url).read)
     item_nodes = xml.xpath('//item')
