@@ -5,6 +5,7 @@ class Tune < ApplicationRecord
   require 'open-uri'
 
   belongs_to :dj
+  belongs_to :event
 
   def crawl
     # p page = agent.get("https://groover-seo.amebaownd.com/posts/3484732")

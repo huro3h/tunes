@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20180114093634) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "dj_id"
+    t.integer "event_id"
   end
 
 end
