@@ -4,6 +4,8 @@ class Tune < ApplicationRecord
   require 'json'
   require 'open-uri'
 
+  belongs_to :dj
+
   def crawl
     # p page = agent.get("https://groover-seo.amebaownd.com/posts/3484732")
     uri = URI.parse('https://api.amebaowndme.com/v2/public/blogPosts/3484732')
