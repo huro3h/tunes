@@ -6,18 +6,17 @@ class Event < ApplicationRecord
 
   has_many :tunes, dependent: :destroy
 
-  def search_set_list
+  def search_from_sources
     url = 'https://groover-seo.amebaownd.com/rss.xml'
     xml = Nokogiri::XML(open(url).read)
     item_nodes = xml.xpath('//item')
-
+    ary = []
     item_nodes.each do |item|
       title = item.xpath('title').text
       link = item.xpath('link').text
-      if title =~ /「SETLIST」/
-        # TODO: titleとlinkをEventテーブルに放り込む
-      end
+      ary << [title, link] if title =~ /「SETLIST」/
     end
+    ary
   end
 
   def self.title_call(title)
