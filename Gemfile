@@ -55,6 +55,7 @@ group :development, :test do
   gem 'pry-rails'
 
   gem 'capybara'
+  gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'rspec-rails', '~> 3.7'
 end
