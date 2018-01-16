@@ -6,8 +6,13 @@ class Event < ApplicationRecord
 
   has_many :tunes, dependent: :destroy
 
+  def self.title_call(title)
+    title unless title.nil?
+  end
+
   def search_from_sources
     url = 'https://groover-seo.amebaownd.com/rss.xml'
+    return if url.nil?
     xml = Nokogiri::XML(open(url).read)
     item_nodes = xml.xpath('//item')
     ary = []
@@ -19,7 +24,4 @@ class Event < ApplicationRecord
     ary
   end
 
-  def self.title_call(title)
-    title unless title.nil?
-  end
 end
