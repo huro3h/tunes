@@ -6,6 +6,8 @@ class Event < ApplicationRecord
 
   has_many :tunes, dependent: :destroy
 
+  validates :url, uniqueness: true
+
   def self.title_call(title)
     title unless title.nil?
   end
