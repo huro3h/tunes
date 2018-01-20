@@ -31,6 +31,6 @@ class Event < ApplicationRecord
   # end
 
   def date_format_from_title(title)
-    title.to_s if title = title.match(/\d{4}.\d{1,2}.\d{1,2}/)
+    title[0].to_s if title = title.match(/\d{4}.\d{1,2}.\d{1,2}/)
   end
 end
