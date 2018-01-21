@@ -10,9 +10,9 @@ describe Event do
   end
 
   describe '#date_format_from_title' do
-    it 'titleから開催日を検索して返すこと' do
+    it 'titleから開催日を検索してDateTime型の日付を返すこと' do
       event = Event.new
-      expect(event.date_format_from_title(title)).to eq('2017.12.31')
+      expect(event.date_format_from_title(title)).to eq('Sun, 31 Dec 2017 00:00:00 +0000')
     end
   end
 
