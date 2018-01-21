@@ -21,13 +21,16 @@ class Event < ApplicationRecord
     item_nodes.each do |item|
       title = item.xpath('title').text
       link = item.xpath('link').text
-      ary << [title, link] if title =~ /「SETLIST」/
+      if title =~ /「SETLIST」/
+        date_at = date_format_from_title(title)
+        ary << [title, link, date_at]
+      end
     end
     record_events(ary)
   end
 
   def record_events(events)
-    # p events
+    p events
   end
 
   def date_format_from_title(title)
