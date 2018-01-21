@@ -8,7 +8,7 @@ class EventsController < ApplicationController
   end
 
   def record
-    @event = Event.new
+    @event = Event.new(event_params)
   end
 
   # GET /events/1
@@ -73,7 +73,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      # params.fetch(:event, {})
-      params.require(:event).permit(:title, :detail, :event_date_at)
+      params.fetch(:event, {}).permit(:title, :detail, :event_date_at, :url)
     end
 end
