@@ -61,4 +61,5 @@ group :development, :test do
 end
 
 gem 'mysql2'
-
+gem 'activerecord-import'
+gem 'whenever', require: false
