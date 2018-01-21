@@ -15,4 +15,16 @@ describe Event do
       expect(event.date_format_from_title(title)).to eq('2017.12.31')
     end
   end
+
+  describe '#url' do
+    it 'urlが重複する場合は無効な状態であること' do
+      Event.create(url: 'https://api.amebaowndme.com/v2/public/blogPosts/1234567')
+      event = Event.new(
+        title: title,
+        url: 'https://api.amebaowndme.com/v2/public/blogPosts/1234567'
+      )
+      event.valid?
+      expect(event.errors[:url]).to include('has already been taken')
+    end
+  end
 end
