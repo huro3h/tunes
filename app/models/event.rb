@@ -29,12 +29,14 @@ class Event < ApplicationRecord
     record_events(ary)
   end
 
-  def record_events(events)
-    p events
+  def date_format_from_title(title)
+    if title.match(/\d{4}.\d{1,2}.\d{1,2}/)
+      date_at = title.match(/\d{4}.\d{1,2}.\d{1,2}/).to_s
+      DateTime.parse(date_at)
+    end
   end
 
-  def date_format_from_title(title)
-    date_at = title[0].to_s if title = title.match(/\d{4}.\d{1,2}.\d{1,2}/)
-    DateTime.parse(date_at)
+  def record_events(events)
+    p events
   end
 end
