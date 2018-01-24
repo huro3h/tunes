@@ -14,23 +14,30 @@ class Event < ApplicationRecord
 
   def search_from_sources
     url = 'https://groover-seo.amebaownd.com/rss.xml'
+    ary = []
     return if url.nil?
     xml = Nokogiri::XML(open(url).read)
     item_nodes = xml.xpath('//item')
     item_nodes.each do |item|
       title = item.xpath('title').text
       link = item.xpath('link').text
-      # a_record(title, link) if title =~ /「SETLIST」/
+      if title =~ /「SETLIST」/
+        date_at = date_format_from_title(title)
+        ary << [title, link, date_at]
+      end
+    end
+    record_events(ary)
+  end
+
+  def date_format_from_title(title)
+    return '' if title.nil?
+    if title =~ /(\d{4}.\d{1,2}.\d{1,2})/
+      date = $1
+      Time.parse(date)
     end
   end
 
-  # def a_record(title, link)
-  #   @event = Event.new
-  #   @event.title = title
-  #   @event.url = link
-  # end
-
-  def date_format_from_title(title)
-    title[0].to_s if title = title.match(/\d{4}.\d{1,2}.\d{1,2}/)
+  def record_events(events)
+    p events
   end
 end
