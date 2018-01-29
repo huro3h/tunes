@@ -2,10 +2,18 @@ require 'rails_helper'
 
 describe Tune do
   describe '#requested?' do
+    let(:tune_title) {
+      Tune.create!(
+        title: 'The great sample tune *',
+        selected_at: Time.now,
+        dj_id: 1,
+        event_id: 1)
+    }
+
     it '受け取った値の末尾が * で終わればリクエスト曲であること' do
-      tune = Tune.new
-      str = 'The great sample tune *'
-      expect(tune.requested?(str)).to eq("#{str}はリクエスト曲です！")
+      dj = create(:dj)
+      event = create(:event)
+      expect(tune_title.requested?).to eq(tune_title.is_request == true)
     end
   end
 
