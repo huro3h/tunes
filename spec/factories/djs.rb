@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :dj do
-    name "MyString"
+    name 'Taro_Maruwa'
   end
 end

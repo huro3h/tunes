@@ -40,8 +40,7 @@ class Tune < ApplicationRecord
     set_list
   end
 
-  def requested?(set_list)
-    "#{set_list}はリクエスト曲です！" if set_list =~ /\*$/
+  def requested?
+    update(is_request: true) if self.title =~ /\*$/
   end
-
 end
