@@ -56,5 +56,5 @@ end
 
 gem 'activerecord-import'
 gem 'dotenv-rails'
-gem 'mysql2'
+gem 'mysql2', '>= 0.3.18', '< 0.5'
 gem 'whenever', require: false
